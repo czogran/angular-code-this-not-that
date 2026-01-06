@@ -1,0 +1,167 @@
+@use 'theme' as *;
+
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  scrollbar-gutter: stable;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+
+/* Shared layout primitives */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px;
+  }
+}
+
+.grid-auto,
+.topics-grid,
+.reference-grid,
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+mat-card {
+  margin-bottom: 1rem;
+}
+
+mat-card-header {
+  margin-bottom: 8px;
+}
+
+/* Common component styles */
+.example-section {
+  margin: 16px 0;
+  padding: 12px;
+  background-color: $surface;
+  border-radius: 4px;
+
+  h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  button {
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.log {
+  margin: 8px 0 0 0;
+  padding: 8px;
+  background-color: #fff;
+  border-left: 3px solid #2196f3;
+  font-family: monospace;
+  font-size: 12px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.log-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  .log {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+// Override component styles with theme variables
+.hook-card.error {
+  border-left: 4px solid $error;
+  mat-card-title {
+    color: $error;
+  }
+}
+.hook-card.success {
+  border-left: 4px solid $accent;
+  mat-card-title {
+    color: $accent;
+  }
+}
+.hook-card.computed {
+  border-left: 4px solid $info;
+  mat-card-title {
+    color: $info;
+  }
+}
+.hook-card.effect {
+  border-left: 4px solid $secondary;
+  mat-card-title {
+    color: $secondary;
+  }
+}

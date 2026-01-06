@@ -1,0 +1,72 @@
+.button-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.example-section {
+  margin: 16px 0;
+
+  .section-header {
+    margin: 0 0 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  h3 {
+    margin: 0 0 8px 0;
+  }
+
+  .product-item {
+    display: flex;
+    gap: 12px;
+    padding: 8px 12px;
+    margin: 4px 0;
+    background-color: white;
+    border-radius: 4px;
+    animation: flashRed 1.5s ease;
+    align-items: center;
+
+    .id {
+      min-width: 50px;
+    }
+
+    .name {
+      flex: 1;
+    }
+
+    button {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@keyframes flashRed {
+  0% {
+    background-color: #ffcdd2;
+  }
+  100% {
+    background-color: white;
+  }
+}

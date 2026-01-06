@@ -1,0 +1,79 @@
+<div class="container">
+  <header class="welcome-header">
+    <h1>Angular Code This Not That</h1>
+    <p class="subtitle">A comprehensive guide to Angular best practices and common pitfalls</p>
+  </header>
+
+  <section class="project-description">
+    <mat-card>
+      <mat-card-content>
+        <h2>About This Project</h2>
+        <p>
+          "Code This, Not That" teaches Angular best practices through direct, side-by-side
+          comparisons of anti-patterns versus recommended approaches. Each section features live,
+          interactive demonstrations that show you the differences in action. Learn by contrast:
+          understand not just what to do, but why the alternatives fall short.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section class="topics-overview">
+    <h2>Explore Angular Topics</h2>
+    <div class="topics-grid">
+      <app-topic-card
+        title="RxJS Issues"
+        description="Learn about common RxJS pitfalls and how to handle observables properly in Angular applications."
+        routerLink="/rxjs"
+        buttonText="Explore RxJS"
+      />
+
+      <app-topic-card
+        title="Memory Leaks"
+        description="Discover how to prevent memory leaks in Angular components and services."
+        routerLink="/memory-leaks"
+        buttonText="Explore Memory Leaks"
+      />
+
+      <app-topic-card
+        title="Signals"
+        description="Master Angular's new signals API for reactive state management."
+        routerLink="/signals"
+        buttonText="Explore Signals"
+      />
+
+      <app-topic-card
+        title="Annotations"
+        description="Best practices for using TypeScript decorators and Angular annotations effectively."
+        routerLink="/annotations"
+        buttonText="Explore Annotations"
+      />
+
+      <app-topic-card
+        title="Control Flow Syntax"
+        description="Master Angular's new built-in control flow syntax for templates."
+        routerLink="/control-flow"
+        buttonText="Explore Control Flow"
+      />
+
+      <app-topic-card
+        title="Change Detection"
+        description="Understand Angular's change detection mechanism and optimize performance with OnPush strategy."
+        routerLink="/change-detection"
+        buttonText="Explore Change Detection"
+      />
+    </div>
+  </section>
+
+  <section class="getting-started">
+    <mat-card>
+      <mat-card-content>
+        <h2>Getting Started</h2>
+        <p>
+          Use the navigation menu above to explore different Angular topics. Each page contains
+          practical examples, common mistakes to avoid, and recommended solutions.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

@@ -1,0 +1,27 @@
+@import '../default-vs-onpush-shared.scss';
+
+mat-card {
+  --flash-color: #9c27b0;
+  --flash-shadow: rgba(156, 39, 176, 0.6);
+}
+
+.counters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.counter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  p {
+    margin: 0;
+  }
+
+  button {
+    align-self: flex-start;
+  }
+}

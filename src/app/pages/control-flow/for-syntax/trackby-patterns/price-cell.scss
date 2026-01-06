@@ -1,0 +1,16 @@
+@keyframes flashOrange {
+  0% {
+    background-color: #ffe0b2;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.price {
+  transition: background-color 0.3s;
+}
+
+.value-updated {
+  animation: flashOrange 1.5s ease;
+}

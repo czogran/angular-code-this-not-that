@@ -1,0 +1,120 @@
+.performance-info {
+  margin-top: 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  color: white;
+  overflow: hidden;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    button {
+      color: white;
+    }
+  }
+
+  .content {
+    padding: 0 20px 20px 20px;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .code-block {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      padding: 12px;
+
+      h4 {
+        margin: 0 0 12px 0;
+        font-size: 13px;
+        font-weight: 600;
+        opacity: 0.9;
+      }
+
+      pre {
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 12px;
+        border-radius: 4px;
+        overflow-x: auto;
+
+        code {
+          font-family: 'Courier New', monospace;
+          font-size: 11px;
+          line-height: 1.5;
+          color: #e0e0e0;
+          white-space: pre;
+        }
+      }
+    }
+  }
+
+  .metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .metric {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 12px 16px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      strong {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      span {
+        font-size: 13px;
+        opacity: 0.95;
+      }
+    }
+  }
+}

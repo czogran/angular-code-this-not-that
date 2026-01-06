@@ -1,0 +1,41 @@
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.method-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: #f9f9f9;
+
+  h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1976d2;
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 1rem 0;
+    font-style: italic;
+  }
+
+  .values {
+    p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+  }
+
+  .note {
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+    font-size: 0.85rem;
+    color: #888;
+  }
+}

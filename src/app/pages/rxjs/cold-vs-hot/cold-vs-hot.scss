@@ -1,0 +1,59 @@
+.cards-container {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+
+  mat-card {
+    flex: 1;
+  }
+}
+
+.row {
+  margin-top: 16px;
+}
+
+.cold-table {
+  width: 100%;
+  margin: 0 0 16px;
+  background: transparent;
+  /* Force Material table tokens to stay transparent */
+  --mat-table-container-background-color: transparent;
+  --mat-table-header-row-item-background-color: transparent;
+  --mat-table-row-item-background-color: transparent;
+  --mat-table-row-item-hover-state-layer-color: transparent;
+  --mat-table-row-item-focus-state-layer-color: transparent;
+}
+
+.cold-table .mat-mdc-header-row,
+.cold-table .mat-mdc-row,
+.cold-table .mat-mdc-header-cell,
+.cold-table .mat-mdc-cell {
+  border: none;
+  background: transparent;
+}
+
+.cold-table .mat-mdc-row:hover {
+  background: transparent;
+}
+
+.cold-table .mat-mdc-header-row,
+.cold-table .mat-mdc-row {
+  min-height: auto;
+  height: auto;
+}
+
+.cold-table .mat-mdc-header-cell,
+.cold-table .mat-mdc-cell {
+  padding: 4px 0;
+  text-align: left;
+  line-height: inherit;
+  font: inherit;
+  color: inherit;
+  vertical-align: baseline;
+}
+
+.cold-table .mat-mdc-header-cell {
+  font-weight: 600;
+  text-transform: none;
+  padding-bottom: 6px;
+}

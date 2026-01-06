@@ -1,0 +1,38 @@
+// Project-wide SCSS variables for consistent theming
+
+// Primary palette
+$primary: #1976d2;
+$primary-light: #63a4ff;
+$primary-dark: #004ba0;
+$on-primary: #fff;
+
+// Secondary palette
+$secondary: #f59e0b;
+$secondary-light: #ffe082;
+$secondary-dark: #c49000;
+$on-secondary: #1a1a1a;
+
+// Accent palette
+$accent: #10b981;
+$accent-light: #6ee7b7;
+$accent-dark: #047857;
+$on-accent: #fff;
+
+// Neutral
+$surface: #f9f9f9;
+$background: #fff;
+$border: #e0e0e0;
+$text: #222;
+$text-light: #666;
+
+// Feedback
+$error: #ef4444;
+$success: #22c55e;
+$info: #3b82f6;
+$warning: #f59e0b;
+
+// Shadows
+$shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+// Border radius
+$radius: 4px;
