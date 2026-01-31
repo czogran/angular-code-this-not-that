@@ -20,7 +20,7 @@ export interface CounterModel {
   styleUrl: './onpush.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card [class.flash]="isChecking()">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>Parent Component (OnPush)</mat-card-title>
       </mat-card-header>
@@ -53,23 +53,20 @@ export interface CounterModel {
         [(mutableCounter)]="mutableCounter"
       />
     </div>
+    {{ testCanary() }}
   `,
 })
 export class OnpushComponent {
   immutableCounter = signal<CounterModel>({ value: 0 });
   mutableCounter = signal<CounterModel>({ value: 0 });
   checkCount = signal(0);
-  isChecking = signal(false);
-  cdr = inject(ChangeDetectorRef);
 
-  ngDoCheck() {
-    try {
-      this.cdr.checkNoChanges();
-    } catch (e) {
-      this.checkCount.update((c) => c + 1);
-      this.isChecking.set(true);
-      setTimeout(() => this.isChecking.set(false), 300);
-    }
+  testCanary() {
+    document.querySelector('mat-card')?.classList.add('flash');
+    setTimeout(() => {
+      document.querySelector('mat-card')?.classList.remove('flash');
+    }, 400);
+    return '';
   }
 
   incrementImmutable() {

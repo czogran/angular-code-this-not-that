@@ -1,4 +1,5 @@
 import {
+  ApplicationRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -19,7 +20,7 @@ export interface CounterModel {
   imports: [MatCardModule, MatButtonModule, DefaultChildOneComponent, DefaultChildTwoComponent],
   styleUrl: './default.scss',
   template: `
-    <mat-card [class.flash]="isChecking()">
+    <mat-card>
       <mat-card-header>
         <mat-card-title>Parent Component (Default)</mat-card-title>
       </mat-card-header>
@@ -34,11 +35,11 @@ export interface CounterModel {
           <div class="counter-group">
             <p><strong>Mutable Counter:</strong> {{ mutableCounter().value }}</p>
             <button mat-raised-button color="accent" (click)="incrementMutable()">
-              Increment Mutable (Mutate)
+              Increment Mutable (Mutate) 
             </button>
           </div>
         </div>
-        <p class="note">Change Detection Runs: {{ checkCount() }}</p>
+        <p class="note">Change Detection Runs: {{ checkCount() }}</p>{{ testCanary() }}
       </mat-card-content>
     </mat-card>
 
@@ -58,19 +59,14 @@ export class DefaultComponent {
   immutableCounter = signal<CounterModel>({ value: 0 });
   mutableCounter = signal<CounterModel>({ value: 0 });
   checkCount = signal(0);
-  isChecking = signal(false);
-  cdr = inject(ChangeDetectorRef);
 
-  ngDoCheck() {
-    try {
-      this.cdr.checkNoChanges();
-    } catch (e) {
-      this.checkCount.update((c) => c + 1);
-      this.isChecking.set(true);
-      setTimeout(() => this.isChecking.set(false), 300);
-    }
+  testCanary() {
+    document.querySelector('mat-card')?.classList.add('flash');
+    setTimeout(() => {
+      document.querySelector('mat-card')?.classList.remove('flash');
+    }, 400);
+    return '';
   }
-
   incrementImmutable() {
     this.immutableCounter.set({ value: this.immutableCounter().value + 1 });
   }

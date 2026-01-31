@@ -8,7 +8,7 @@ import { CounterModel } from './default';
   imports: [MatCardModule, MatButtonModule],
   styleUrl: './default-child-two.scss',
   template: `
-    <mat-card [class.flash]="isChecking()">
+    <mat-card class="child-two">
       <mat-card-header>
         <mat-card-title>Child Component 2 (Default)</mat-card-title>
       </mat-card-header>
@@ -35,7 +35,7 @@ import { CounterModel } from './default';
         </div>
         <p class="note">Change Detection Runs: {{ checkCount() }}</p>
       </mat-card-content>
-    </mat-card>
+    </mat-card>{{testCanary()}}
   `,
 })
 export class DefaultChildTwoComponent {
@@ -43,17 +43,13 @@ export class DefaultChildTwoComponent {
   mutableCounter = model.required<CounterModel>();
   localCounter = signal<CounterModel>({ value: 0 });
   checkCount = signal(0);
-  isChecking = signal(false);
-  cdr = inject(ChangeDetectorRef);
 
-  ngDoCheck() {
-    try {
-      this.cdr.checkNoChanges();
-    } catch (e) {
-      this.checkCount.update((c) => c + 1);
-      this.isChecking.set(true);
-      setTimeout(() => this.isChecking.set(false), 300);
-    }
+  testCanary() {
+    document.querySelector('.child-two')?.classList.add('flash');
+    setTimeout(() => {
+      document.querySelector('.child-two')?.classList.remove('flash');
+    }, 400);
+    return '';
   }
 
   incrementGlobalImmutable() {

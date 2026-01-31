@@ -1,4 +1,4 @@
-@import '../default-vs-onpush-shared.scss';
+@use '../default-vs-onpush-shared.scss' as *;
 
 mat-card {
   --flash-color: #ff9800;
