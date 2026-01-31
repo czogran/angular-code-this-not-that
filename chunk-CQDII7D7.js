@@ -1,0 +1,1 @@
+var o=[{path:"",redirectTo:"input",pathMatch:"full"},{path:"input",loadComponent:()=>import("./chunk-TGKCGGEL.js").then(t=>t.InputComponent)},{path:"viewchild",loadComponent:()=>import("./chunk-OBFIDG7G.js").then(t=>t.ViewChildComponent)}];export{o as a};

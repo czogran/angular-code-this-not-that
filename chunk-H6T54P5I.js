@@ -1,0 +1,1 @@
+import"./chunk-2NFLSA4Y.js";var o=[{path:"",redirectTo:"default",pathMatch:"full"},{path:"default",loadComponent:()=>import("./chunk-JLUB2I7J.js").then(t=>t.DefaultComponent)},{path:"onpush",loadComponent:()=>import("./chunk-AWA3CVH7.js").then(t=>t.OnpushComponent)}];export{o as DEFAULT_VS_ONPUSH_ROUTES};
