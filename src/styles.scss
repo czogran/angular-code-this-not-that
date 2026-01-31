@@ -1,4 +1,4 @@
-@use 'theme' as *;
+@use './theme' as *;
 
 // Include theming for Angular Material with `mat.theme()`.
 // This Sass mixin will define CSS variables that are used for styling Angular Material
@@ -137,31 +137,5 @@ mat-card-header {
 
   h3 {
     font-size: 1.25rem;
-  }
-}
-
-// Override component styles with theme variables
-.hook-card.error {
-  border-left: 4px solid $error;
-  mat-card-title {
-    color: $error;
-  }
-}
-.hook-card.success {
-  border-left: 4px solid $accent;
-  mat-card-title {
-    color: $accent;
-  }
-}
-.hook-card.computed {
-  border-left: 4px solid $info;
-  mat-card-title {
-    color: $info;
-  }
-}
-.hook-card.effect {
-  border-left: 4px solid $secondary;
-  mat-card-title {
-    color: $secondary;
   }
 }

@@ -41,7 +41,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
         <div class="example-section">
           <h3>Lifecycle Hook Comparison</h3>
           <div class="hooks-grid">
-            <mat-card class="hook-card error">
+            <mat-card>
               <mat-card-header>
                 <mat-card-title>❌ Constructor</mat-card-title>
               </mat-card-header>
@@ -57,7 +57,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="hook-card error">
+            <mat-card>
               <mat-card-header>
                 <mat-card-title>❌ ngOnInit</mat-card-title>
               </mat-card-header>
@@ -72,7 +72,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="hook-card error">
+            <mat-card>
               <mat-card-header>
                 <mat-card-title>❌ ngAfterContentInit</mat-card-title>
               </mat-card-header>
@@ -88,7 +88,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="hook-card success">
+            <mat-card class="success">
               <mat-card-header>
                 <mat-card-title>✅ ngAfterViewInit</mat-card-title>
               </mat-card-header>
@@ -104,7 +104,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="hook-card computed">
+            <mat-card class="computed">
               <mat-card-header>
                 <mat-card-title>🔄 computed()</mat-card-title>
               </mat-card-header>
@@ -116,7 +116,7 @@ import { ViewChildTargetComponent } from './viewchild-target';
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="hook-card effect">
+            <mat-card class="effect">
               <mat-card-header>
                 <mat-card-title>⚡ effect()</mat-card-title>
               </mat-card-header>

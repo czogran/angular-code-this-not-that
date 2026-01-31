@@ -22,43 +22,55 @@ import { MatCardModule } from '@angular/material/card';
         <mat-card-title>Child Component - Input Handling Methods</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="methods-grid">
-          <div class="method-section">
-            <h3>ngOnInit</h3>
-            <div class="values">
-              <p><strong>Immediate:</strong> {{ onInitImmediate }}</p>
-              <p><strong>Delayed:</strong> {{ onInitDelayed }}</p>
-              <p><strong>Every Time:</strong> {{ onInitEveryTime }}</p>
-            </div>
-          </div>
+        <div class="container">
+          <div class="example-section">
+            <div class="hooks-grid">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>ngOnInit</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p><strong>Immediate:</strong> {{ onInitImmediate }}</p>
+                  <p><strong>Delayed:</strong> {{ onInitDelayed }}</p>
+                  <p><strong>Every Time:</strong> {{ onInitEveryTime }}</p>
+                </mat-card-content>
+              </mat-card>
 
-          <div class="method-section">
-            <h3>ngOnChanges</h3>
-            <div class="values">
-              <p><strong>Immediate:</strong> {{ onChangesImmediate() }}</p>
-              <p><strong>Delayed:</strong> {{ onChangesDelayed() }}</p>
-              <p><strong>Every Time:</strong> {{ onChangesEveryTime() }}</p>
-            </div>
-            <p class="note">Change count: {{ changeCount() }}</p>
-          </div>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>ngOnChanges</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p><strong>Immediate:</strong> {{ onChangesImmediate() }}</p>
+                  <p><strong>Delayed:</strong> {{ onChangesDelayed() }}</p>
+                  <p><strong>Every Time:</strong> {{ onChangesEveryTime() }}</p>
+                  <p class="note">Change count: {{ changeCount() }}</p>
+                </mat-card-content>
+              </mat-card>
 
-          <div class="method-section">
-            <h3>computed()</h3>
-            <div class="values">
-              <p><strong>Immediate:</strong> {{ computedImmediate() }}</p>
-              <p><strong>Delayed:</strong> {{ computedDelayed() }}</p>
-              <p><strong>Every Time:</strong> {{ computedEveryTime() }}</p>
-            </div>
-          </div>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>computed()</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p><strong>Immediate:</strong> {{ computedImmediate() }}</p>
+                  <p><strong>Delayed:</strong> {{ computedDelayed() }}</p>
+                  <p><strong>Every Time:</strong> {{ computedEveryTime() }}</p>
+                </mat-card-content>
+              </mat-card>
 
-          <div class="method-section">
-            <h3>effect()</h3>
-            <div class="values">
-              <p><strong>Immediate:</strong> {{ effectImmediate() }}</p>
-              <p><strong>Delayed:</strong> {{ effectDelayed() }}</p>
-              <p><strong>Every Time:</strong> {{ effectEveryTime() }}</p>
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>effect()</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <p><strong>Immediate:</strong> {{ effectImmediate() }}</p>
+                  <p><strong>Delayed:</strong> {{ effectDelayed() }}</p>
+                  <p><strong>Every Time:</strong> {{ effectEveryTime() }}</p>
+                  <p class="note">Effect run count: {{ effectRunCount() }}</p>
+                </mat-card-content>
+              </mat-card>
             </div>
-            <p class="note">Effect run count: {{ effectRunCount() }}</p>
           </div>
         </div>
       </mat-card-content>
@@ -79,18 +91,18 @@ export class InputChildComponent implements OnInit, OnChanges {
   onChangesEveryTime = signal(0);
   changeCount = signal(0);
 
-  computedImmediate = computed(() => this.immediateValue() );
-  computedDelayed = computed(() => this.delayedValue() );
-  computedEveryTime = computed(() => this.everyTimeValue() );
+  computedImmediate = computed(() => this.immediateValue());
+  computedDelayed = computed(() => this.delayedValue());
+  computedEveryTime = computed(() => this.everyTimeValue());
 
   effectImmediate = signal(0);
   effectDelayed = signal(0);
   effectEveryTime = signal(0);
   effectRunCount = signal(0);
 
-constructor() {
+  constructor() {
     effect(() => {
-      this.effectImmediate.set(this.immediateValue() );
+      this.effectImmediate.set(this.immediateValue());
       this.effectDelayed.set(this.delayedValue());
       this.effectEveryTime.set(this.everyTimeValue());
       this.effectRunCount.update((c) => c + 1);

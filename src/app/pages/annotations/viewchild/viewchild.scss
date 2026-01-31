@@ -1,11 +1,8 @@
-@use '../../../theme' as *;
-
+s
 .example-section {
   .local {
-    background-color: $info;
-    color: $on-accent;
     padding: 8px 12px;
-    border-radius: $radius;
+    border-radius: 4px;
     margin: 0;
   }
 }
@@ -18,45 +15,11 @@
 }
 
 .hook-card {
-  &.error {
-    border-left: 4px solid $error;
-
-    mat-card-title {
-      color: $error;
-    }
-  }
-
-  &.success {
-    border-left: 4px solid $accent;
-
-    mat-card-title {
-      color: $accent;
-    }
-  }
-
-  &.computed {
-    border-left: 4px solid $info;
-
-    mat-card-title {
-      color: $info;
-    }
-  }
-
-  &.effect {
-    border-left: 4px solid $secondary;
-
-    mat-card-title {
-      color: $secondary;
-    }
-  }
-
   mat-card-content p {
     margin: 4px 0;
     font-size: 13px;
-
     strong {
       font-weight: 600;
-      color: $text-light;
     }
   }
 }
