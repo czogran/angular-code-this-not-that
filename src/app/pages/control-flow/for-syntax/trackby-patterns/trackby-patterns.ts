@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NgFor } from '@angular/common';
 import { PriceCellComponent } from './price-cell';
+import { P } from '@angular/cdk/keycodes';
 
 interface Product {
   id: number;
@@ -33,7 +34,7 @@ interface Product {
 
         <div class="example-section">
           <h3 class="section-header" (click)="toggleSection('ngfor')">
-            <span>*ngFor without trackBy (re-renders all items)</span>
+            <span>*ngFor without trackBy (re-renders whole row)</span>
             <mat-icon>{{ expandedSections()['ngfor'] ? 'expand_less' : 'expand_more' }}</mat-icon>
           </h3>
 
@@ -129,8 +130,6 @@ export class TrackbyPatternsComponent {
   });
   updatedProductIds = signal<Set<number>>(new Set());
 
-
-
   toggleSection(section: string) {
     this.expandedSections.update((sections) => ({
       ...sections,
@@ -169,7 +168,13 @@ export class TrackbyPatternsComponent {
     const updatedProductId = this.products()[randomIndex]?.id;
 
     this.products.update((products) =>
-      products.map((p, i) => (i === randomIndex ? { ...p, price: newPrice } : p)),
+      products.map((p, i) => {
+        if (i === randomIndex) {
+          p.price = newPrice;
+          return p;
+        }
+        return p;
+      }),
     );
 
     if (updatedProductId !== undefined) {

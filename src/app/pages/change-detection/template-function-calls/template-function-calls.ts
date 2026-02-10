@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
         <div class="button-group">
           <button mat-raised-button color="primary" (click)="updatePrice()">Update Price</button>
           <button mat-raised-button (click)="triggerCD()">Trigger Change Detection</button>
+          <button mat-raised-button (click)="dummyClick()">Dummy Click</button>
         </div>
 
         <div class="example-section">
@@ -58,17 +59,15 @@ export class TemplateFunctionCallsComponent {
   taxRate = 0.2;
 
   badCallCount = 0;
-  calculateFinalPrice(): string {
+  calculateFinalPrice(): number {
     this.badCallCount++;
-    const total = this.basePrice() * (1 + this.taxRate);
-    return total.toFixed(2);
+    return this.basePrice() * (1 + this.taxRate);
   }
 
   goodCallCount = 0;
   computedFinalPrice = computed(() => {
     this.goodCallCount++;
-    const total = this.basePrice() * (1 + this.taxRate);
-    return total.toFixed(2);
+    return this.basePrice() * (1 + this.taxRate);
   });
 
   updatePrice() {
@@ -76,6 +75,10 @@ export class TemplateFunctionCallsComponent {
   }
 
   triggerCD() {
-    this.cdr.detectChanges();
+    setTimeout(() => {
+      this.cdr.detectChanges();
+    }, 1000);
   }
+
+  dummyClick() {}
 }

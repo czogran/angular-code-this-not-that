@@ -152,6 +152,8 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
   styleUrl: './unsubscribe-patterns.scss',
 })
 export class UnsubscribePatternsComponent implements OnDestroy {
+  injector = inject(Injector);
+
   private destroyNotifier = new Subject<void>();
   private takeUntilNotifier = new Subject<void>();
   private takeWhileCondition = true;
@@ -243,19 +245,21 @@ export class UnsubscribePatternsComponent implements OnDestroy {
   // Pattern 6: takeUntilDestroyed (auto cleanup)
   subscribeTakeUntilDestroyedPattern() {
     this.takeUntilDestroyedCurrentValue.set(null);
-    interval(1000)
-      .pipe(
-        tap((v) => console.log('Pattern 6 - takeUntilDestroyed:', v)),
-        takeUntilDestroyed(),
-      )
-      .subscribe((v) => {
-        this.takeUntilDestroyedCurrentValue.set(v);
-      });
+    runInInjectionContext(this.injector, () =>
+      interval(1000)
+        .pipe(
+          tap((v) => console.log('Pattern 6 - takeUntilDestroyed:', v)),
+          takeUntilDestroyed(),
+        )
+        .subscribe((v) => {
+          this.takeUntilDestroyedCurrentValue.set(v);
+        }),
+    );
   }
 
   // Pattern 7: toSignal (auto cleanup)
   subscribeToSignalPattern() {
-    this.toSignalValue = runInInjectionContext(inject(Injector), () =>
+    this.toSignalValue = runInInjectionContext(this.injector, () =>
       toSignal(interval(1000).pipe(tap((v) => console.log('Pattern 7 - toSignal:', v))), {
         initialValue: null,
       }),
@@ -267,7 +271,7 @@ export class UnsubscribePatternsComponent implements OnDestroy {
     // stop any prior manual toSignal stream
     this.cleanupToSignalManual();
 
-    this.toSignalManualValue = runInInjectionContext(inject(Injector), () =>
+    this.toSignalManualValue = runInInjectionContext(this.injector, () =>
       toSignal(
         interval(1000).pipe(
           tap((v) => console.log('Pattern 8 - toSignal manualCleanup:', v)),
