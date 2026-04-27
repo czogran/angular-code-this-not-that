@@ -22,4 +22,11 @@ export const CHANGE_DETECTION_ROUTES: Routes = [
         (m) => m.TemplateFunctionCallsComponent,
       ),
   },
+  {
+    path: 'run-outside-angular',
+    loadComponent: () =>
+      import('./run-outside-angular/run-outside-angular.js').then(
+        (m) => m.RunOutsideAngularComponent,
+      ),
+  },
 ];

@@ -26,7 +26,7 @@ interface User {
           <button mat-raised-button color="warn" (click)="removeUser()">Remove User</button>
         </div>
 
-        <div class="example-section">
+        <div id="old-syntax-section" class="example-section">
           <h3>*ngFor (old syntax)</h3>
           <div *ngFor="let user of users(); let i = index; trackBy: trackById" class="user-item">
             <span class="index">{{ i + 1 }}</span>
@@ -35,21 +35,6 @@ interface User {
               {{ user.isActive ? 'Active' : 'Inactive' }}
             </span>
           </div>
-        </div>
-
-        <div class="example-section">
-          <h3>&#64;for with &#64;empty (new syntax)</h3>
-          @for (user of users(); track user.id; let i = $index) {
-            <div class="user-item">
-              <span class="index">{{ i + 1 }}</span>
-              <span class="name">{{ user.name }}</span>
-              <span class="status" [class.active]="user.isActive">
-                {{ user.isActive ? 'Active' : 'Inactive' }}
-              </span>
-            </div>
-          } @empty {
-            <p class="empty-message">No users available</p>
-          }
         </div>
 
         <app-for-performance-comparison />

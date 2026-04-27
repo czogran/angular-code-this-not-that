@@ -1,6 +1,5 @@
 mat-card {
   &.flash {
-  
     animation: flash 0.5s ease;
   }
 }
@@ -17,12 +16,6 @@ mat-card {
     transform: scale(1);
     box-shadow: none;
   }
-}
-
-.note {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #666;
 }
 
 button {

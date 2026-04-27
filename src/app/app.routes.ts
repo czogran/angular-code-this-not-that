@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { OnpushComponent } from './pages/change-detection/default-vs-onpush/onpush/onpush';
+import { RunOutsideAngularComponent } from './pages/change-detection/run-outside-angular/run-outside-angular';
 
 export const routes: Routes = [
   {
@@ -44,5 +46,9 @@ export const routes: Routes = [
       import('./pages/change-detection/change-detection-routing').then(
         (m) => m.CHANGE_DETECTION_ROUTES,
       ),
+  },
+  {
+    path: 'plain-component',
+    component: RunOutsideAngularComponent,
   },
 ];

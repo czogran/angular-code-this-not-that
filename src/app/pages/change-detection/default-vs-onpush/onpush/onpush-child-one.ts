@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  model,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, model, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CounterModel } from './onpush';
@@ -41,7 +34,6 @@ import { CounterModel } from './onpush';
             </button>
           </div>
         </div>
-        <p class="note">Change Detection Runs: {{ checkCount() }}</p>
       </mat-card-content> </mat-card
     >{{ testCanary() }}
   `,
@@ -50,7 +42,6 @@ export class OnpushChildOneComponent {
   immutableCounter = model.required<CounterModel>();
   mutableCounter = model.required<CounterModel>();
   localCounter = signal<CounterModel>({ value: 0 });
-  checkCount = signal(0);
 
   testCanary() {
     document.querySelector('.child-one')?.classList.add('flash');

@@ -39,7 +39,6 @@ export interface CounterModel {
             </button>
           </div>
         </div>
-        <p class="note">Change Detection Runs: {{ checkCount() }}</p>
       </mat-card-content>
     </mat-card>
 
@@ -59,9 +58,9 @@ export interface CounterModel {
 export class OnpushComponent {
   immutableCounter = signal<CounterModel>({ value: 0 });
   mutableCounter = signal<CounterModel>({ value: 0 });
-  checkCount = signal(0);
 
   testCanary() {
+    console.log('Parent canary triggered');
     document.querySelector('mat-card')?.classList.add('flash');
     setTimeout(() => {
       document.querySelector('mat-card')?.classList.remove('flash');

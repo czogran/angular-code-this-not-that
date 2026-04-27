@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { NgFor } from '@angular/common';
-import { PriceCellComponent } from './price-cell';
-import { P } from '@angular/cdk/keycodes';
+import { ProductItemComponent } from './product-item';
+import { ExampleSectionComponent } from './example-section';
 
 interface Product {
   id: number;
@@ -14,7 +13,7 @@ interface Product {
 
 @Component({
   selector: 'app-trackby-patterns',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, NgFor, PriceCellComponent],
+  imports: [MatCardModule, MatButtonModule, NgFor, ProductItemComponent, ExampleSectionComponent],
   styleUrl: './trackby-patterns.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -30,84 +29,52 @@ interface Product {
             Refresh Products
           </button>
           <button mat-raised-button color="accent" (click)="updatePrice()">Update Price</button>
+          <button mat-raised-button color="accent" (click)="reverseOrder()">Reverse Order</button>
         </div>
 
-        <div class="example-section">
-          <h3 class="section-header" (click)="toggleSection('ngfor')">
-            <span>*ngFor without trackBy (re-renders whole row)</span>
-            <mat-icon>{{ expandedSections()['ngfor'] ? 'expand_less' : 'expand_more' }}</mat-icon>
-          </h3>
+        <app-example-section
+          title="*ngFor without trackBy (re-renders whole row)"
+          fragment="ngfor"
+          [expanded]="expandedSections()['ngfor']"
+          (toggleExpanded)="toggleSection('ngfor')"
+        >
+          <ng-container *ngFor="let product of products()">
+            <app-product-item [product]="product" (removeProduct)="removeProductById($event)" />
+          </ng-container>
+        </app-example-section>
 
-          @if (expandedSections()['ngfor']) {
-            <div *ngFor="let product of products()" class="product-item">
-              <span class="id">ID: {{ product.id }}</span>
-              <span class="name">{{ product.name }}</span>
-              <app-price-cell [price]="product.price" />
-              <button mat-icon-button color="warn" (click)="removeProductById(product.id)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
+        <app-example-section
+          title="@for with track by id (recommended)"
+          fragment="track-by-id"
+          [expanded]="expandedSections()['id']"
+          (toggleExpanded)="toggleSection('id')"
+        >
+          @for (product of products(); track product.id) {
+            <app-product-item [product]="product" (removeProduct)="removeProductById($event)" />
           }
-        </div>
+        </app-example-section>
 
-        <div class="example-section">
-          <h3 class="section-header" (click)="toggleSection('id')">
-            <span>&#64;for with track by id (recommended)</span>
-            <mat-icon>{{ expandedSections()['id'] ? 'expand_less' : 'expand_more' }}</mat-icon>
-          </h3>
-          @if (expandedSections()['id']) {
-            @for (product of products(); track product.id) {
-              <div class="product-item">
-                <span class="id">ID: {{ product.id }}</span>
-                <span class="name">{{ product.name }}</span>
-                <app-price-cell [price]="product.price" />
-                <button mat-icon-button color="warn" (click)="removeProductById(product.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            }
+        <app-example-section
+          title="@for with track by $index"
+          fragment="track-by-index"
+          [expanded]="expandedSections()['index']"
+          (toggleExpanded)="toggleSection('index')"
+        >
+          @for (product of products(); track $index) {
+            <app-product-item [product]="product" (removeProduct)="removeProductById($event)" />
           }
-        </div>
+        </app-example-section>
 
-        <div class="example-section">
-          <h3 class="section-header" (click)="toggleSection('index')">
-            <span>&#64;for with track by $index</span>
-            <mat-icon>{{ expandedSections()['index'] ? 'expand_less' : 'expand_more' }}</mat-icon>
-          </h3>
-          @if (expandedSections()['index']) {
-            @for (product of products(); track $index) {
-              <div class="product-item">
-                <span class="id">ID: {{ product.id }}</span>
-                <span class="name">{{ product.name }}</span>
-                <app-price-cell [price]="product.price" />
-                <button mat-icon-button color="warn" (click)="removeProductById(product.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            }
+        <app-example-section
+          title="@for with track by reference"
+          fragment="track-by-reference"
+          [expanded]="expandedSections()['reference']"
+          (toggleExpanded)="toggleSection('reference')"
+        >
+          @for (product of products(); track product) {
+            <app-product-item [product]="product" (removeProduct)="removeProductById($event)" />
           }
-        </div>
-
-        <div class="example-section">
-          <h3 class="section-header" (click)="toggleSection('reference')">
-            <span>&#64;for with track by reference</span>
-            <mat-icon>{{
-              expandedSections()['reference'] ? 'expand_less' : 'expand_more'
-            }}</mat-icon>
-          </h3>
-          @if (expandedSections()['reference']) {
-            @for (product of products(); track product) {
-              <div class="product-item">
-                <span class="id">ID: {{ product.id }}</span>
-                <span class="name">{{ product.name }}</span>
-                <app-price-cell [price]="product.price" />
-                <button mat-icon-button color="warn" (click)="removeProductById(product.id)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            }
-          }
-        </div>
+        </app-example-section>
       </mat-card-content>
     </mat-card>
   `,
@@ -128,7 +95,6 @@ export class TrackbyPatternsComponent {
     index: true,
     reference: true,
   });
-  updatedProductIds = signal<Set<number>>(new Set());
 
   toggleSection(section: string) {
     this.expandedSections.update((sections) => ({
@@ -153,8 +119,9 @@ export class TrackbyPatternsComponent {
     this.products.update((products) => products.slice(0, -1));
   }
 
-  removeProductById(id: number) {
-    this.products.update((products) => products.filter((p) => p.id !== id));
+  removeProductById(id: number | Event) {
+    const productId = typeof id === 'number' ? id : (id as unknown as { id: number }).id;
+    this.products.update((products) => products.filter((p) => p.id !== productId));
   }
 
   refreshProducts() {
@@ -176,17 +143,10 @@ export class TrackbyPatternsComponent {
         return p;
       }),
     );
+  }
 
-    if (updatedProductId !== undefined) {
-      this.updatedProductIds.update((ids) => new Set(ids).add(updatedProductId));
-      setTimeout(() => {
-        this.updatedProductIds.update((ids) => {
-          const newIds = new Set(ids);
-          newIds.delete(updatedProductId);
-          return newIds;
-        });
-      }, 1500);
-    }
+  reverseOrder() {
+    this.products.update((products) => products.reverse());
   }
 
   trackByProductId(index: number, product: Product): number {

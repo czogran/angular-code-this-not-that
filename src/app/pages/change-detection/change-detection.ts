@@ -12,6 +12,7 @@ import { SectionNavComponent } from '../../shared/section-nav/section-nav';
       [tabs]="[
         { label: 'Default vs OnPush', routerLink: 'default-vs-onpush' },
         { label: 'Template Function Calls', routerLink: 'template-function-calls' },
+        { label: 'Run Outside Angular', routerLink: 'run-outside-angular' },
       ]"
     />
   `,

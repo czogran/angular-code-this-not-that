@@ -14,7 +14,6 @@ export class PriceCellComponent {
   constructor() {
     effect(() => {
       const currentPrice = this.price();
-
       if (this.previousPrice !== undefined && this.previousPrice !== currentPrice) {
         this.isUpdated.set(true);
         setTimeout(() => {
