@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, input } from '@angular/core';
+import { Component, Input, ElementRef, input, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-viewchild-decorator-card',
   standalone: true,
   imports: [MatCardModule, CommonModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <mat-card [ngClass]="cardClass()">
       <mat-card-header>

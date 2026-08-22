@@ -12,7 +12,7 @@ export interface ProductItemData {
 @Component({
   selector: 'app-product-item',
   imports: [MatButtonModule, MatIconModule, PriceCellComponent],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="product-item">
       <span class="id">ID: {{ product().id }}</span>

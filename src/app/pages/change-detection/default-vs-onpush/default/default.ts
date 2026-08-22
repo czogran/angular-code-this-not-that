@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { DefaultChildOneComponent } from './default-child-one';
@@ -12,6 +12,7 @@ export interface CounterModel {
   selector: 'app-default',
   imports: [MatCardModule, MatButtonModule, DefaultChildOneComponent, DefaultChildTwoComponent],
   styleUrl: './default.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <mat-card>
       <mat-card-header>

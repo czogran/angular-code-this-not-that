@@ -90,6 +90,7 @@ export class DanglingRefsComponent implements OnDestroy {
 
 @Component({
   selector: 'app-dynamic-child',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: '<div>Dynamic Component</div>',
 })
 class DynamicChildComponent implements OnInit, OnDestroy {

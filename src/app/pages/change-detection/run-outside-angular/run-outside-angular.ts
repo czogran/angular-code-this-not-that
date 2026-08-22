@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-run-outside-angular',
   imports: [MatCardModule, MatButtonModule],
   styleUrl: './run-outside-angular.scss',
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div class="page">
       <div class="examples">
